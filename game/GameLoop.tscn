@@ -1,0 +1,111 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://HudFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://fonts/FuturaCom-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Rocket.tscn" type="PackedScene" id=4]
+[ext_resource path="res://GameLoop.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+font_data = ExtResource( 2 )
+
+[node name="GameLoop" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Background" type="ColorRect" parent="HUD"]
+margin_right = 1024.0
+margin_bottom = 50.0
+color = Color( 0, 0, 0, 0.498039 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBackground" type="Label" parent="HUD/Background"]
+margin_left = 10.0
+margin_right = 40.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.196078, 0.196078, 0.196078, 1 )
+text = "3939"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="Label" parent="HUD/Background"]
+margin_left = 10.0
+margin_right = 114.0
+margin_bottom = 50.0
+mouse_filter = 0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+valign = 1
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Score" type="Label" parent="HUD/Background"]
+margin_left = 500.0
+margin_right = 1014.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 1 )
+text = "0000000000"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOver" type="Label" parent="HUD"]
+visible = false
+margin_top = 250.0
+margin_right = 1024.0
+margin_bottom = 350.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Game Over"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TryAgain" type="Label" parent="HUD/GameOver"]
+margin_top = 80.0
+margin_right = 1024.0
+margin_bottom = 100.0
+mouse_filter = 0
+custom_fonts/font = ExtResource( 1 )
+text = "Click 3939 to try again!"
+align = 1
+valign = 1
+
+[node name="BackgroundStars" type="CPUParticles2D" parent="."]
+position = Vector2( 1024, 300 )
+z_index = -10
+amount = 20
+lifetime = 8.0
+preprocess = 20.0
+emission_shape = 2
+emission_rect_extents = Vector2( 1, 300 )
+direction = Vector2( -1, 0 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 200.0
+initial_velocity_random = 0.5
+scale_amount = 5.0
+scale_amount_random = 0.5
+
+[node name="Rocket" parent="." instance=ExtResource( 4 )]
+position = Vector2( 140, 300 )
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="NextObstacleTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+[connection signal="gui_input" from="HUD/Background/HealthBar" to="." method="_on_TryAgain_gui_input"]
+[connection signal="gui_input" from="HUD/GameOver/TryAgain" to="." method="_on_TryAgain_gui_input"]
+[connection signal="timeout" from="NextObstacleTimer" to="." method="_on_NextObstacleTimer_timeout"]

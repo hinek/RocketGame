@@ -28,8 +28,11 @@ func create_obstacle():
 
 
 func _on_NextObstacleTimer_timeout():
+	if game_over:
+		return
+	
 	create_obstacle()
-	if $NextObstacleTimer.wait_time < 20:
+	if $NextObstacleTimer.wait_time < 15:
 		$NextObstacleTimer.wait_time += 1
 	$NextObstacleTimer.start()
 

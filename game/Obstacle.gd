@@ -40,7 +40,7 @@ func passed():
 
 
 func reset():
-	position = Vector2(1100, rand_range(50, 550))
+	position = Vector2(1100, rand_range(30, 570))
 	movement_speed = rand_range(200, 300)
 	rotation_speed = rand_range(-70, 70)
 	was_passed = false

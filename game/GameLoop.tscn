@@ -104,7 +104,7 @@ position = Vector2( 140, 300 )
 [node name="Obstacles" type="Node2D" parent="."]
 
 [node name="NextObstacleTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
 [connection signal="gui_input" from="HUD/Background/HealthBar" to="." method="_on_TryAgain_gui_input"]
 [connection signal="gui_input" from="HUD/GameOver/TryAgain" to="." method="_on_TryAgain_gui_input"]

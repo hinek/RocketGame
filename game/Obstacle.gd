@@ -15,7 +15,7 @@ func _ready():
 func _process(delta):
 	position.x -= movement_speed * delta
 	rotation_degrees += rotation_speed * delta
-	if position.x < 100 && !was_passed:
+	if position.x < 60 && !was_passed:
 		passed()
 	if position.x < -100:
 		reset()
@@ -27,10 +27,15 @@ func passed():
 	if scene.game_over:
 		return
 	
-	scene.call_deferred("add_score", 1)
+	var rocket_position = get_tree().current_scene.find_node("Rocket").position
+	var distance = position.distance_to(rocket_position)
+	var points = int(clamp(270 - distance, 50, 150) / 50)
+	
+	scene.call_deferred("add_score", points)
 	var score_indicator = load("res://ScoreAdded.tscn").instance()
 	score_indicator.margin_left = position.x
 	score_indicator.margin_top = position.y
+	score_indicator.text = "+" + str(points)
 	get_parent().add_child(score_indicator)
 
 

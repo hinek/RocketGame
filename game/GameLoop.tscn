@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://HudFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://fonts/FuturaCom-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://HUD.gd" type="Script" id=3]
 [ext_resource path="res://Rocket.tscn" type="PackedScene" id=4]
 [ext_resource path="res://GameLoop.gd" type="Script" id=5]
 
@@ -13,6 +14,8 @@ font_data = ExtResource( 2 )
 script = ExtResource( 5 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
+pause_mode = 2
+script = ExtResource( 3 )
 
 [node name="Background" type="ColorRect" parent="HUD"]
 margin_right = 1024.0
@@ -81,6 +84,20 @@ custom_fonts/font = ExtResource( 1 )
 text = "Click 3939 to try again!"
 align = 1
 valign = 1
+
+[node name="GamePaused" type="Label" parent="HUD"]
+visible = false
+margin_top = 250.0
+margin_right = 1024.0
+margin_bottom = 350.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "press p to unpause"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BackgroundStars" type="CPUParticles2D" parent="."]
 position = Vector2( 1024, 300 )

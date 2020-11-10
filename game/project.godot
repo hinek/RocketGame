@@ -17,7 +17,7 @@ _global_script_class_icons={
 
 config/name="Rocket Game"
 run/main_scene="res://GameLoop.tscn"
-config/icon="res://icon.png"
+config/icon="res://img/rocket.png"
 
 [rendering]
 

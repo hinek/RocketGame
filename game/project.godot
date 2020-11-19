@@ -19,6 +19,10 @@ config/name="Rocket Game"
 run/main_scene="res://GameLoop.tscn"
 config/icon="res://img/rocket.png"
 
+[locale]
+
+translations=PoolStringArray( "res://translations.en.translation", "res://translations.de.translation" )
+
 [rendering]
 
 quality/driver/driver_name="GLES2"

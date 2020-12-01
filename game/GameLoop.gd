@@ -19,6 +19,7 @@ var game_over = false
 func _ready():
 	create_obstacle()
 	$NextObstacleTimer.start()
+	$HUD/GameOver/CreatedBy.bbcode_text = tr("CREATEDBY")
 
 
 func create_obstacle():
@@ -64,3 +65,7 @@ func gameover():
 func _on_TryAgain_gui_input(event):
 	if event is InputEventMouseButton && event.pressed && event.button_index == 1 && game_over:
 		get_tree().reload_current_scene()
+
+
+func _on_CreatedBy_meta_clicked(meta):
+	OS.shell_open(meta)

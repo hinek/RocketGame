@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://HudFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://fonts/FuturaCom-Bold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://HUD.gd" type="Script" id=3]
 [ext_resource path="res://Rocket.tscn" type="PackedScene" id=4]
 [ext_resource path="res://GameLoop.gd" type="Script" id=5]
+[ext_resource path="res://FooterFont.tres" type="DynamicFont" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -85,6 +86,16 @@ text = "TRYAGAIN"
 align = 1
 valign = 1
 
+[node name="CreatedBy" type="RichTextLabel" parent="HUD/GameOver"]
+margin_left = 10.0
+margin_top = 290.0
+margin_right = 1014.0
+margin_bottom = 350.0
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "CREATEDBY"
+text = "CREATEDBY"
+
 [node name="GamePaused" type="Label" parent="HUD"]
 visible = false
 margin_top = 250.0
@@ -125,4 +136,5 @@ wait_time = 3.0
 one_shot = true
 [connection signal="gui_input" from="HUD/Background/HealthBar" to="." method="_on_TryAgain_gui_input"]
 [connection signal="gui_input" from="HUD/GameOver/TryAgain" to="." method="_on_TryAgain_gui_input"]
+[connection signal="meta_clicked" from="HUD/GameOver/CreatedBy" to="." method="_on_CreatedBy_meta_clicked"]
 [connection signal="timeout" from="NextObstacleTimer" to="." method="_on_NextObstacleTimer_timeout"]

@@ -69,3 +69,9 @@ func _on_TryAgain_gui_input(event):
 
 func _on_CreatedBy_meta_clicked(meta):
 	OS.shell_open(meta)
+
+
+func _on_PauseButton_toggled(button_pressed):
+	get_tree().paused = button_pressed
+	$HUD/PauseButton.icon = load("res://img/play_icon.png") if button_pressed else load("res://img/pause_icon.png")
+	$HUD/GamePaused.visible = button_pressed

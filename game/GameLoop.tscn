@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://HudFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://fonts/FuturaCom-Bold.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://HUD.gd" type="Script" id=3]
 [ext_resource path="res://Rocket.tscn" type="PackedScene" id=4]
 [ext_resource path="res://GameLoop.gd" type="Script" id=5]
 [ext_resource path="res://FooterFont.tres" type="DynamicFont" id=6]
+[ext_resource path="res://img/pause_icon.png" type="Texture" id=7]
+[ext_resource path="res://ButtonStyle.tres" type="StyleBox" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -16,7 +17,6 @@ script = ExtResource( 5 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 pause_mode = 2
-script = ExtResource( 3 )
 
 [node name="Background" type="ColorRect" parent="HUD"]
 margin_right = 1024.0
@@ -96,6 +96,21 @@ bbcode_enabled = true
 bbcode_text = "CREATEDBY"
 text = "CREATEDBY"
 
+[node name="PauseButton" type="Button" parent="HUD"]
+margin_left = 10.0
+margin_top = 530.0
+margin_right = 70.0
+margin_bottom = 590.0
+custom_styles/hover = ExtResource( 8 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/focus = ExtResource( 8 )
+custom_styles/normal = ExtResource( 8 )
+toggle_mode = true
+icon = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="GamePaused" type="Label" parent="HUD"]
 visible = false
 margin_top = 250.0
@@ -103,7 +118,7 @@ margin_right = 1024.0
 margin_bottom = 350.0
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "UNPAUSE"
+text = "PAUSE"
 align = 1
 valign = 1
 __meta__ = {
@@ -137,4 +152,5 @@ one_shot = true
 [connection signal="gui_input" from="HUD/Background/HealthBar" to="." method="_on_TryAgain_gui_input"]
 [connection signal="gui_input" from="HUD/GameOver/TryAgain" to="." method="_on_TryAgain_gui_input"]
 [connection signal="meta_clicked" from="HUD/GameOver/CreatedBy" to="." method="_on_CreatedBy_meta_clicked"]
+[connection signal="toggled" from="HUD/PauseButton" to="." method="_on_PauseButton_toggled"]
 [connection signal="timeout" from="NextObstacleTimer" to="." method="_on_NextObstacleTimer_timeout"]

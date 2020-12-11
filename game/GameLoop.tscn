@@ -143,6 +143,7 @@ scale_amount_random = 0.5
 
 [node name="Rocket" parent="." instance=ExtResource( 4 )]
 position = Vector2( 140, 300 )
+z_index = 10
 
 [node name="Obstacles" type="Node2D" parent="."]
 
